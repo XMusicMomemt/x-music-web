@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音乐瞬间 · 证书认证官网</title>
+<meta name="description" content="音乐瞬间（Moment in Music）面向音乐教育机构的一站式证书认证体系：教师资质认证、演奏考级签发、证书真伪查验。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   音乐瞬间 Moment in Music — 黑金证书认证官网
+   Token 体系：语义化 CSS 变量，日/夜双主题（data-theme 切换）
+   ============================================================ */
+:root{
+  /* —— 夜间（默认）：深暖黑 + 鎏金 —— */
+  --bg:#0d0a07;
+  --bg-soft:#120e09;
+  --surface:#191410;
+  --surface-2:#221b12;
+  --cert-paper:#241d13;
+  --field:#14100a;
+  --ink:#f1e8d8;
+  --ink-2:#c8bca6;
+  --ink-3:#94896f;
+  --line:rgba(228,200,148,.13);
+  --line-strong:rgba(228,200,148,.30);
+  --gold:#d4af6a;
+  --gold-strong:#e9cf95;
+  --gold-deep:#8f7138;
+  --on-gold:#221708;
+  --pattern:rgba(212,175,106,.055);
+  --success:#8cc4a6;
+  --success-bg:rgba(140,196,166,.10);
+  --danger:#e09184;
+  --danger-bg:rgba(224,145,132,.09);
+  --warn:#d9b878;
+  --warn-bg:rgba(217,184,120,.10);
+  --focus:rgba(212,175,106,.55);
+  --shadow:0 24px 64px rgba(0,0,0,.46);
+  --glow:rgba(212,175,106,.09);
+  --font-serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --font-sans:"Noto Sans SC","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+}
+[data-theme="day"]{
+  /* —— 日间：瓷白 + 沉金（清灵） —— */
+  --bg:#f9f7f1;
+  --bg-soft:#f3f0e8;
+  --surface:#ffffff;
+  --surface-2:#faf8f1;
+  --cert-paper:#fffdf8;
+  --field:#ffffff;
+  --ink:#261e12;
+  --ink-2:#6a5f4c;
+  --ink-3:#746a54;
+  --line:rgba(96,74,34,.10);
+  --line-strong:rgba(96,74,34,.22);
+  --gold:#85642a;
+  --gold-strong:#6e5420;
+  --gold-deep:#bd9550;
+  --on-gold:#fdfaf2;
+  --pattern:rgba(133,100,42,.045);
+  --success:#3d7a5c;
+  --success-bg:rgba(61,122,92,.08);
+  --danger:#a54a3a;
+  --danger-bg:rgba(165,74,58,.07);
+  --warn:#85642a;
+  --warn-bg:rgba(133,100,42,.08);
+  --focus:rgba(133,100,42,.38);
+  --shadow:0 14px 36px rgba(96,74,34,.09);
+  --glow:rgba(189,149,80,.10);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.75;
+  letter-spacing:0;
+  -webkit-font-smoothing:antialiased;
+  min-height:100svh;
+}
+body,header,footer,section,.card,.panel,input,select,textarea,.btn,.chip,.badge,details{
+  transition:background-color .3s ease,color .3s ease,border-color .3s ease;
+}
+::selection{background:var(--gold);color:var(--on-gold)}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:2px}
+.skip-link{
+  position:absolute;left:-999px;top:8px;z-index:200;
+  background:var(--gold);color:var(--on-gold);padding:8px 16px;border-radius:4px;
+}
+.skip-link:focus{left:8px}
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:clamp(20px,4vw,40px)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ---------- 图标 ---------- */
+.ic{width:1.15em;height:1.15em;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ---------- 顶栏 ---------- */
+.site-head{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:color-mix(in srgb,var(--bg) 84%,transparent);
+  border-bottom:1px solid transparent;
+}
+.site-head.scrolled{border-bottom-color:var(--line)}
+.head-in{display:flex;align-items:center;gap:28px;height:66px}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand-mark{width:34px;height:34px;color:var(--gold)}
+.brand-name{font-family:var(--font-serif);font-weight:600;font-size:18px;letter-spacing:.08em;white-space:nowrap}
+.brand-sub{display:block;font-family:var(--font-sans);font-size:9.5px;letter-spacing:.3em;color:var(--ink-3);font-weight:400;margin-top:-2px}
+.main-nav{display:flex;gap:6px;margin-left:auto}
+.main-nav a{
+  font-size:14.5px;color:var(--ink-2);padding:8px 13px;border-radius:6px;position:relative;
+  transition:color .15s ease;
+}
+.main-nav a:hover{color:var(--ink)}
+.main-nav a[aria-current="page"]{color:var(--ink)}
+.main-nav a[aria-current="page"]::after{
+  content:"";position:absolute;left:13px;right:13px;bottom:3px;height:2px;background:var(--gold);border-radius:2px;
+}
+.head-actions{display:flex;align-items:center;gap:12px;flex:none}
+.theme-btn{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line-strong);
+  background:transparent;color:var(--ink-2);cursor:pointer;display:grid;place-items:center;
+  transition:color .15s ease,border-color .15s ease,transform .15s ease;
+}
+.theme-btn:hover{color:var(--gold);border-color:var(--gold);transform:rotate(15deg)}
+.theme-btn .ic{width:18px;height:18px}
+[data-theme="night"] .ic-sun{display:none}
+[data-theme="day"] .ic-moon{display:none}
+.menu-btn{display:none;width:38px;height:38px;border:1px solid var(--line-strong);background:transparent;border-radius:8px;color:var(--ink);cursor:pointer;place-items:center}
+.mobile-nav{display:none}
+.mobile-nav.open{display:block;border-top:1px solid var(--line)}
+.mobile-nav a{display:block;padding:14px clamp(20px,4vw,40px);border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.mobile-nav a[aria-current="page"]{color:var(--gold)}
+@media (max-width:860px){
+  .main-nav{display:none}
+  .menu-btn{display:grid}
+  .head-cta{display:none}
+}
+
+/* ---------- 按钮 ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:999px;font-size:15px;font-weight:500;line-height:1;cursor:pointer;
+  padding:14px 28px;border:1px solid transparent;white-space:nowrap;
+  transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .15s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-gold{background:var(--gold);color:var(--on-gold)}
+.btn-gold:hover{background:var(--gold-strong)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-sm{padding:9px 20px;font-size:14px}
+.btn-block{width:100%}
+
+/* ---------- 视图路由 ---------- */
+main{min-height:calc(100svh - 66px)}
+[hidden]{display:none!important}
+.view[hidden]{display:none}
+section[id],[data-scroll-target]{scroll-margin-top:86px}
+.view{animation:viewIn .28s cubic-bezier(.2,0,0,1)}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- 通用区块 ---------- */
+.sec{padding:clamp(72px,9vw,116px) 0}
+.sec-head{margin-bottom:clamp(36px,5vw,56px)}
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:12px;letter-spacing:.34em;color:var(--gold);font-weight:500;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);flex:none}
+.sec-title{
+  font-family:var(--font-serif);font-weight:600;line-height:1.3;
+  font-size:clamp(26px,3.8vw,42px);letter-spacing:.02em;
+}
+.sec-lead{color:var(--ink-2);margin-top:16px;max-width:34em;font-size:15.5px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  transition:border-color .15s ease,transform .15s ease,background-color .3s ease;
+}
+.card:hover{border-color:var(--line-strong)}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;
+  font-size:12.5px;font-weight:500;letter-spacing:.04em;
+}
+.badge-ok{background:var(--success-bg);color:var(--success);border:1px solid color-mix(in srgb,var(--success) 35%,transparent)}
+.badge-warn{background:var(--warn-bg);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent)}
+.badge-danger{background:var(--danger-bg);color:var(--danger);border:1px solid color-mix(in srgb,var(--danger) 35%,transparent)}
+
+/* ---------- 首页 Hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  padding:clamp(56px,7vw,96px) 0 clamp(64px,8vw,104px);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(640px 420px at 82% 6%,var(--glow),transparent 70%);
+}
+.hero-grid{
+  position:relative;display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(36px,5vw,72px);align-items:center;
+}
+.hero-copy .eyebrow{margin-bottom:24px}
+.hero h1{
+  font-family:var(--font-serif);font-weight:600;
+  font-size:clamp(42px,6.6vw,84px);line-height:1.22;letter-spacing:.03em;
+}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{color:var(--ink-2);margin-top:26px;font-size:16px;max-width:31em}
+.hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+.hero-trust{display:flex;gap:clamp(20px,3vw,40px);margin-top:52px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-2)}
+.trust-item .ic{color:var(--gold);width:17px;height:17px}
+
+/* 入场编排（仅首页，reduced-motion 兜底） */
+.rise{opacity:0;animation:riseIn .7s cubic-bezier(.2,0,0,1) forwards}
+.rise-1{animation-delay:.05s}.rise-2{animation-delay:.16s}.rise-3{animation-delay:.28s}
+.rise-4{animation-delay:.40s}.rise-5{animation-delay:.52s}.rise-6{animation-delay:.62s}
+@keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* ---------- 证书卡（CSS 烫金证书） ---------- */
+.cert-stage{position:relative;display:grid;place-items:center;min-height:520px}
+.cert-stage::before{
+  content:"";position:absolute;width:540px;height:540px;border-radius:50%;
+  border:1px solid var(--line);pointer-events:none;
+}
+.cert-stage::after{
+  content:"";position:absolute;width:380px;height:380px;border-radius:50%;
+  border:1px solid var(--line-strong);pointer-events:none;translate:56px -30px;
+}
+.cert{
+  position:relative;width:min(400px,88%);aspect-ratio:.72;
+  background:var(--cert-paper);border:1px solid var(--line-strong);border-radius:4px;
+  box-shadow:var(--shadow);
+  background-image:
+    repeating-linear-gradient(45deg,var(--pattern) 0 1px,transparent 1px 8px),
+    repeating-linear-gradient(-45deg,var(--pattern) 0 1px,transparent 1px 8px);
+  padding:clamp(24px,3vw,36px) clamp(22px,3vw,32px);
+  display:flex;flex-direction:column;
+  transform:rotate(-3.5deg);
+  transition:transform .3s cubic-bezier(.2,0,0,1),background-color .3s ease;
+}
+.cert:hover{transform:rotate(-1.2deg) translateY(-4px)}
+.cert::before{
+  content:"";position:absolute;inset:9px;border:1px solid var(--line-strong);pointer-events:none;
+}
+.cert::after{
+  content:"";position:absolute;inset:13px;border:1px solid var(--line);pointer-events:none;
+}
+.cert-head{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.22em;color:var(--ink-3)}
+.cert-body{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:clamp(18px,3vw,34px)}
+.cert-brand{font-family:var(--font-serif);font-size:13px;letter-spacing:.42em;color:var(--gold);margin-bottom:6px;text-indent:.42em}
+.cert-seal{width:54px;height:54px;color:var(--gold);margin:10px 0 16px}
+.cert-title{font-family:var(--font-serif);font-weight:600;font-size:clamp(21px,2.4vw,25px);letter-spacing:.14em;text-indent:.14em}
+.cert-rule{width:56px;height:1px;background:var(--gold-deep);margin:18px auto}
+.cert-name{font-family:var(--font-serif);font-size:clamp(26px,3vw,32px);font-weight:600;letter-spacing:.18em;text-indent:.18em}
+.cert-line{font-size:13px;color:var(--ink-2);margin-top:10px;letter-spacing:.12em}
+.cert-meta{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:16px}
+.cert-issue{font-size:11px;color:var(--ink-3);letter-spacing:.08em;line-height:1.9}
+.cert-issue strong{display:block;font-size:12.5px;color:var(--ink-2);font-weight:500;letter-spacing:.14em}
+.cert-stamp{width:64px;height:64px;color:var(--gold);opacity:.92}
+.cert-note{position:absolute;bottom:-34px;left:50%;translate:-50% 0;font-size:12px;color:var(--ink-3);white-space:nowrap;letter-spacing:.08em}
+
+/* ---------- 证书体系 ---------- */
+.sys-grid{display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:auto auto;gap:18px}
+.sys-card{padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:14px}
+.sys-card.featured{grid-row:span 2}
+.sys-num{font-family:var(--font-serif);font-size:15px;color:var(--gold);letter-spacing:.2em}
+.sys-card h3{font-family:var(--font-serif);font-weight:600;font-size:21px;letter-spacing:.05em}
+.sys-card.featured h3{font-size:27px}
+.sys-card p{color:var(--ink-2);font-size:14.5px;max-width:30em}
+.sys-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.tag{
+  font-size:12px;color:var(--ink-2);border:1px solid var(--line-strong);
+  padding:4px 12px;border-radius:999px;letter-spacing:.05em;
+}
+.sys-visual{margin-top:8px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:18px;align-items:center}
+.sys-visual .big{font-family:var(--font-serif);font-size:40px;font-weight:600;color:var(--gold);line-height:1}
+.sys-visual .cap{font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+/* ---------- 流程 ---------- */
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.flow-step{padding:34px clamp(18px,2.4vw,30px) 8px;border-left:1px solid var(--line)}
+.flow-step:first-child{border-left:none;padding-left:0}
+.flow-num{
+  font-family:var(--font-serif);font-size:34px;font-weight:600;color:var(--gold);line-height:1;
+  display:flex;align-items:baseline;gap:10px;
+}
+.flow-num small{font-size:11px;color:var(--ink-3);letter-spacing:.24em;font-family:var(--font-sans);font-weight:400}
+.flow-step h3{font-family:var(--font-serif);font-size:18.5px;font-weight:600;margin:18px 0 10px;letter-spacing:.05em}
+.flow-step p{font-size:13.5px;color:var(--ink-2);line-height:1.8}
+
+/* ---------- 查验组件 ---------- */
+.verify-panel{max-width:660px}
+.verify-form{display:flex;gap:12px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:13px;color:var(--ink-2);letter-spacing:.06em}
+.field label b{color:var(--gold);font-weight:500}
+.control{
+  width:100%;background:var(--field);border:1px solid var(--line-strong);border-radius:9px;
+  color:var(--ink);font:inherit;font-size:15px;padding:13px 16px;letter-spacing:.04em;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.control::placeholder{color:var(--ink-3);letter-spacing:.02em}
+.control:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--focus)}
+.control:user-invalid{border-color:var(--danger)}
+textarea.control{resize:vertical;min-height:104px;line-height:1.7}
+select.control{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 21px) 50%,calc(100% - 16px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+.field-msg{display:none;font-size:12.5px;color:var(--danger);line-height:1.6}
+.field.invalid .field-msg{display:block}
+.field.invalid .control{border-color:var(--danger)}
+.field-hint{font-size:12.5px;color:var(--ink-3)}
+.verify-form .field{flex:1}
+.verify-form .btn{align-self:flex-end;height:47px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.chips-cap{font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
+.chip{
+  font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink-2);
+  background:transparent;border:1px solid var(--line-strong);border-radius:999px;
+  padding:6px 14px;cursor:pointer;letter-spacing:.05em;
+  transition:border-color .15s ease,color .15s ease;
+}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+
+/* 查验结果 */
+.verify-result{margin-top:26px}
+.result-card{padding:clamp(24px,3vw,34px);display:grid;grid-template-columns:1fr 128px;gap:28px}
+.result-main dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;font-size:14px}
+.result-main dt{color:var(--ink-3);letter-spacing:.08em;white-space:nowrap}
+.result-main dd{letter-spacing:.03em}
+.result-name{font-family:var(--font-serif);font-size:24px;font-weight:600;letter-spacing:.1em;margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.result-side{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center}
+.qr-box{
+  width:112px;height:112px;border:1px dashed var(--line-strong);border-radius:8px;
+  display:grid;place-items:center;font-size:11px;color:var(--ink-3);letter-spacing:.14em;text-align:center;line-height:1.8;
+  background:var(--surface-2);
+}
+.verify-at{font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+.result-note{margin-top:14px;font-size:12.5px;color:var(--ink-3)}
+.state-box{padding:34px;text-align:center;color:var(--ink-2)}
+.state-box .ic{width:38px;height:38px;margin:0 auto 14px;color:var(--gold)}
+.state-box h3{font-family:var(--font-serif);font-size:19px;color:var(--ink);margin-bottom:8px;letter-spacing:.06em}
+.state-box p{font-size:13.5px;max-width:30em;margin-inline:auto}
+.spin{width:30px;height:30px;border:2px solid var(--line-strong);border-top-color:var(--gold);border-radius:50%;margin:0 auto 14px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- FAQ ---------- */
+.faq-list{max-width:760px}
+details{border-bottom:1px solid var(--line)}
+details summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 4px;font-family:var(--font-serif);font-size:17px;font-weight:500;letter-spacing:.04em;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--gold);font-size:20px;font-weight:400;flex:none;transition:transform .2s ease}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 4px 24px;color:var(--ink-2);font-size:14.5px;max-width:36em}
+
+/* ---------- CTA 横幅 ---------- */
+.cta-band{position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-soft)}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(520px 260px at 50% 120%,var(--glow),transparent 70%);pointer-events:none}
+.cta-in{position:relative;text-align:center;padding:clamp(64px,8vw,96px) 0}
+.cta-in h2{font-family:var(--font-serif);font-size:clamp(26px,4vw,44px);font-weight:600;letter-spacing:.04em}
+.cta-in p{color:var(--ink-2);margin:16px auto 34px;max-width:30em;font-size:15.5px}
+.cta-in .hero-cta{justify-content:center;margin-top:0}
+
+/* ---------- 页脚 ---------- */
+.site-foot{border-top:1px solid var(--line);padding:clamp(48px,6vw,72px) 0 40px;background:var(--bg-soft)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.foot-brand p{color:var(--ink-3);font-size:13px;margin-top:14px;max-width:22em}
+.foot-col h4{font-size:12.5px;letter-spacing:.24em;color:var(--ink-3);font-weight:500;margin-bottom:16px}
+.foot-col a{display:block;font-size:14px;color:var(--ink-2);padding:5px 0;transition:color .15s ease}
+.foot-col a:hover{color:var(--gold)}
+.foot-col .foot-txt{display:block;font-size:14px;color:var(--ink-2);padding:5px 0}
+.foot-base{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);letter-spacing:.05em}
+
+/* ---------- 认证教师名录 ---------- */
+.feed-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:26px 0 22px}
+.feed-chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.feed-count{font-size:13px;color:var(--ink-3);letter-spacing:.06em}
+.feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.t-card{display:flex;flex-direction:column;gap:12px;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:10px;transition:transform .18s ease,border-color .18s ease}
+.t-card:hover{transform:translateY(-2px);border-color:var(--line-strong)}
+.t-head{display:flex;align-items:center;gap:12px}
+.t-avatar{width:46px;height:46px;flex:none;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;font-family:var(--font-serif);font-size:19px;color:var(--gold);background:var(--surface-2)}
+.t-id{min-width:0;flex:1}
+.t-name-row{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.t-name{font-family:var(--font-serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.3}
+.t-org{font-size:12.5px;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-bio{font-size:13.5px;color:var(--ink-2);line-height:1.75;flex:1}
+.t-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.t-cert{font-size:12px;color:var(--ink-3)}
+.t-verify{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gold);background:none;border:none;cursor:pointer;padding:4px 6px;border-radius:6px;font-family:inherit}
+.t-verify:hover{color:var(--gold-strong)}
+.t-verify:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tier{flex:none;display:inline-flex;align-items:center;font-size:11px;letter-spacing:.1em;padding:3px 9px;border-radius:999px;font-weight:500}
+.tier-gold{background:var(--gold);color:var(--on-gold)}
+.tier-mid{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.tier-junior{background:transparent;color:var(--ink-3);border:1px solid var(--line-strong)}
+.view-note{font-size:12.5px;color:var(--ink-3);line-height:1.7;margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* ---------- 查验视图 ---------- */
+.page-head{padding:clamp(48px,6vw,72px) 0 clamp(28px,4vw,44px);border-bottom:1px solid var(--line)}
+.page-head h1{font-family:var(--font-serif);font-weight:600;font-size:clamp(30px,4.4vw,48px);letter-spacing:.05em;line-height:1.3}
+.page-head .sec-lead{margin-top:14px}
+.page-body{padding:clamp(40px,5vw,64px) 0 clamp(72px,9vw,110px)}
+
+/* ---------- 申请视图 ---------- */
+.stepper{display:flex;gap:0;max-width:660px;margin-bottom:38px}
+.step-tab{flex:1;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:2px solid var(--line);color:var(--ink-3);font-size:13px;letter-spacing:.06em;transition:border-color .2s ease,color .2s ease}
+.step-tab .dot{
+  width:26px;height:26px;border-radius:50%;border:1px solid var(--line-strong);flex:none;
+  display:grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums;
+}
+.step-tab.active{border-bottom-color:var(--gold);color:var(--ink)}
+.step-tab.active .dot{border-color:var(--gold);color:var(--gold)}
+.step-tab.done{color:var(--gold);border-bottom-color:var(--gold-deep)}
+.step-tab.done .dot{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+.apply-panel{max-width:660px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-grid .full{grid-column:1/-1}
+.form-nav{display:flex;justify-content:space-between;gap:14px;margin-top:30px}
+.form-errors{
+  display:none;margin-bottom:24px;padding:16px 20px;border:1px solid color-mix(in srgb,var(--danger) 40%,transparent);
+  border-radius:10px;background:var(--danger-bg);
+}
+.form-errors.show{display:block}
+.form-errors h3{font-size:14px;color:var(--danger);margin-bottom:8px}
+.form-errors a{display:block;font-size:13px;color:var(--danger);padding:3px 0;text-decoration:underline;text-underline-offset:3px}
+.success-panel{max-width:640px;text-align:center;padding:clamp(48px,6vw,72px) clamp(24px,4vw,48px)}
+.success-panel .ic{width:56px;height:56px;margin:0 auto 22px;color:var(--gold)}
+.success-panel h2{font-family:var(--font-serif);font-size:27px;font-weight:600;letter-spacing:.06em}
+.success-serial{display:inline-block;margin:22px 0 8px;font-size:15px;border:1px solid var(--line-strong);border-radius:999px;padding:10px 26px;letter-spacing:.14em;color:var(--gold)}
+.success-panel p{color:var(--ink-2);font-size:14.5px;max-width:28em;margin:14px auto 0}
+.success-panel .demo-note{font-size:12.5px;color:var(--ink-3)}
+.success-panel .hero-cta{justify-content:center;margin-top:30px}
+
+/* ---------- 认证空间 ---------- */
+.demo-ribbon{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;
+  font-size:12.5px;letter-spacing:.1em;color:var(--warn);
+  border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);background:var(--warn-bg);
+  padding:6px 16px;border-radius:999px;
+}
+.space-hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.avatar{
+  width:64px;height:64px;border-radius:50%;background:var(--surface-2);border:1px solid var(--gold-deep);
+  display:grid;place-items:center;font-family:var(--font-serif);font-size:24px;font-weight:600;color:var(--gold);flex:none;
+}
+.space-hero h2{font-family:var(--font-serif);font-size:25px;font-weight:600;letter-spacing:.08em}
+.space-hero .meta{color:var(--ink-3);font-size:13.5px;margin-top:4px;letter-spacing:.06em}
+.space-hero .badge{margin-left:auto}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
+.stat-card{padding:22px 24px}
+.stat-card .num{font-family:var(--font-serif);font-size:34px;font-weight:600;color:var(--gold);line-height:1.1}
+.stat-card .cap{font-size:13px;color:var(--ink-2);margin-top:6px;letter-spacing:.08em}
+.space-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:18px;align-items:start}
+.panel{padding:clamp(22px,2.6vw,30px)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}
+.panel-head h3{font-family:var(--font-serif);font-size:18px;font-weight:600;letter-spacing:.08em}
+.panel-head .more{font-size:12.5px;color:var(--gold)}
+.cert-row{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.cert-row:first-of-type{border-top:none;padding-top:0}
+.cert-row .ic{width:22px;height:22px;color:var(--gold);flex:none}
+.cert-row .info{flex:1;min-width:0}
+.cert-row .info strong{display:block;font-size:14.5px;font-weight:500;letter-spacing:.04em}
+.cert-row .info span{font-size:12px;color:var(--ink-3);letter-spacing:.05em}
+.cert-row .badge{flex:none}
+.todo-item{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line);align-items:flex-start}
+.todo-item:first-of-type{border-top:none;padding-top:0}
+.todo-item .ic{width:19px;height:19px;color:var(--gold);flex:none;margin-top:3px}
+.todo-item .info{flex:1}
+.todo-item .info strong{display:block;font-size:14px;font-weight:500;line-height:1.6}
+.todo-item .info span{font-size:12.5px;color:var(--danger);letter-spacing:.04em}
+.todo-item .btn{margin-top:10px}
+.notice-item{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.notice-item:first-of-type{border-top:none;padding-top:0}
+.notice-item time{color:var(--ink-3);font-size:12px;white-space:nowrap;padding-top:2px;font-variant-numeric:tabular-nums}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{text-align:left;font-size:11.5px;color:var(--ink-3);letter-spacing:.18em;font-weight:500;padding:0 12px 12px 0;white-space:nowrap}
+.tbl td{padding:13px 12px 13px 0;border-top:1px solid var(--line);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.tbl td:first-child{font-weight:500}
+.space-note{margin-top:26px;font-size:12px;color:var(--ink-3);text-align:center;letter-spacing:.06em}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .cert-stage{min-height:0;padding:30px 0 60px}
+  .sys-grid{grid-template-columns:1fr}
+  .sys-card.featured{grid-row:auto}
+  .flow-grid{grid-template-columns:1fr 1fr;row-gap:0}
+  .flow-step{padding-left:0;border-left:none;padding-right:0;border-top:1px solid var(--line)}
+  .flow-grid{border-top:none}
+  .flow-step{border-top:1px solid var(--line)}
+  .result-card{grid-template-columns:1fr}
+  .result-side{flex-direction:row;justify-content:flex-start}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .space-grid{grid-template-columns:1fr}
+  .feed-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .flow-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr;gap:12px}
+  .form-grid{grid-template-columns:1fr}
+  .stepper{gap:8px}
+  .step-tab .lbl{display:none}
+  .verify-form{flex-direction:column;align-items:stretch}
+  .verify-form .btn{align-self:stretch}
+  .foot-grid{grid-template-columns:1fr}
+  .space-hero .badge{margin-left:0}
+  .feed-grid{grid-template-columns:1fr}
+  .feed-bar{flex-direction:column;align-items:flex-start}
+}
+
+/* ---------- 动效兜底 ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise{animation:none;opacity:1;transform:none}
+  .view{animation:none}
+  .cert,.cert:hover{transform:none}
+  .spin{animation-duration:1.6s}
+  *,*::before,*::after{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- SVG 图标库 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 18.5a2.7 2.7 0 1 0 .01 0M11.7 18.5V5.4c3 .4 5.1 1.7 5.8 4.2.3-4.1-2.1-6.8-5.8-7.3z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.4c0 4.4-2.9 7.6-7 8.8-4.1-1.2-7-4.4-7-8.8V5.8z"/><path d="M9 12l2 2 4-4.5"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 19h14"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 6.5l5.5 5.5-5.5 5.5"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.2"/><path d="M8.8 13.5 7.2 21l4.8-2.4L16.8 21l-1.6-7.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6.5 16v-5.2a5.5 5.5 0 0 1 11 0V16l1.5 2.5H5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-check-c" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.8-5.4"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.5M12 15.8v.2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.4-3.4 3.9-5 7-5s5.6 1.6 7 5"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M5 21V8l7-5 7 5v13M5 21h14"/><path d="M10 21v-4h4v4M9 11h.2M12 11h.2M15 11h.2M9 14.5h.2M12 14.5h.2M15 14.5h.2"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-head" id="siteHead">
+  <div class="wrap head-in">
+    <a class="brand" href="#/home" aria-label="音乐瞬间 首页">
+      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="15.7" fill="none" stroke="currentColor" stroke-width="1.1"/>
+        <circle cx="17" cy="17" r="12.6" fill="none" stroke="currentColor" stroke-width=".6" opacity=".55"/>
+        <path d="M14.6 22.3a2.9 2.9 0 1 0 .01 0M17 22.3V8.2c3.4.5 5.8 2 6.5 4.8.3-4.6-2.4-7.7-6.5-8.3z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
+      <span><span class="brand-name">音乐瞬间</span><span class="brand-sub">MOMENT IN MUSIC</span></span>
+    </a>
+    <nav class="main-nav" aria-label="主导航" id="mainNav">
+      <a href="#/home" data-route="home">首页</a>
+      <a href="#/teachers" data-route="teachers">认证教师</a>
+      <a href="#/verify" data-route="verify">证书查验</a>
+      <a href="#/apply" data-route="apply">教师申请</a>
+      <a href="#/space" data-route="space">认证空间</a>
+    </nav>
+    <div class="head-actions">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="切换日间/夜间主题">
+        <svg class="ic ic-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="ic ic-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <a class="btn btn-gold btn-sm head-cta" href="#/apply">申请认证</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航">
+    <a href="#/home" data-route="home">首页</a>
+    <a href="#/teachers" data-route="teachers">认证教师</a>
+    <a href="#/verify" data-route="verify">证书查验</a>
+    <a href="#/apply" data-route="apply">教师申请</a>
+    <a href="#/space" data-route="space">认证空间</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ==================== 视图：首页 ==================== -->
+<section class="view" data-view="home" id="view-home" aria-label="首页">
+
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow rise rise-1">MOMENT IN MUSIC · 音乐证书认证体系</p>
+        <h1 class="rise rise-2">琴声易逝，<br><em>凭证长存</em>。</h1>
+        <p class="hero-sub rise rise-3">「音乐瞬间」面向音乐教育机构提供一站式证书认证——教师资质认证、演奏考级签发、证书真伪查验。一号一档，全程可追溯。</p>
+        <div class="hero-cta rise rise-4">
+          <a class="btn btn-gold" href="#/apply">申请教师认证</a>
+          <a class="btn btn-ghost" href="#/verify">查验证书</a>
+        </div>
+        <div class="hero-trust rise rise-5">
+          <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-file"/></svg>三类证书体系</span>
+          <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>四步审核流程</span>
+          <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>一号一档，公开可查</span>
+        </div>
+      </div>
+
+      <div class="cert-stage rise rise-6">
+        <article class="cert" aria-label="证书样式示例：演奏等级认证证书">
+          <div class="cert-head"><span>编号 <span class="tnum">MIM-2026-0117</span></span><span>MOMENT IN MUSIC</span></div>
+          <div class="cert-body">
+            <div class="cert-brand">音乐瞬间</div>
+            <svg class="cert-seal" viewBox="0 0 56 56" aria-hidden="true">
+              <circle cx="28" cy="28" r="26" fill="none" stroke="currentColor" stroke-width="1"/>
+              <circle cx="28" cy="28" r="20.5" fill="none" stroke="currentColor" stroke-width=".6"/>
+              <path d="M26 32.5a3.1 3.1 0 1 0 .01 0M28.6 32.5V14.5c3.6.6 6.1 2.2 6.9 5.1.3-4.8-2.5-8-6.9-8.6z" fill="none" stroke="currentColor" stroke-width="1"/>
+              <path d="M15 23h6M35 23h6" stroke="currentColor" stroke-width=".7"/>
+              <path d="M15 33h6M35 33h6" stroke="currentColor" stroke-width=".7"/>
+            </svg>
+            <h2 class="cert-title">演奏等级认证证书</h2>
+            <div class="cert-rule" aria-hidden="true"></div>
+            <p class="cert-name">林婉秋</p>
+            <p class="cert-line">钢琴 · 第捌级 · 评审委员会评定</p>
+          </div>
+          <div class="cert-meta">
+            <div class="cert-issue">签发日期<strong class="tnum">2026 年 6 月 18 日</strong></div>
+            <svg class="cert-stamp" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="32" cy="32" r="23.5" fill="none" stroke="currentColor" stroke-width=".6"/>
+              <path d="M32 20l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" fill="none" stroke="currentColor" stroke-width=".9" stroke-linejoin="round"/>
+              <path d="M18 44h28" stroke="currentColor" stroke-width=".6"/>
+            </svg>
+          </div>
+          <p class="cert-note">证书样式示例 · 数据为演示内容</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- 证书体系 -->
+  <section class="sec" id="system" data-section="system">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">证书体系</p>
+        <h2 class="sec-title">三类凭证，覆盖音乐教育全链路</h2>
+        <p class="sec-lead">从学员的每一次考级，到教师的执业资历，再到登台实践的经历存证——同一套编号体系，同一处查验入口。</p>
+      </div>
+      <div class="sys-grid">
+        <article class="card sys-card featured">
+          <span class="sys-num tnum">01 / 证书体系</span>
+          <h3>演奏等级认证</h3>
+          <p>面向学员的分级认证。钢琴、弦乐、民乐、声乐等十个专业方向，由对应专业评审委员会统一评定；证书采用一号一档管理，支持公开查验与二维码核验。</p>
+          <div class="sys-visual">
+            <span class="big tnum">10</span>
+            <span class="cap">专业方向<br>十个方向独立评审</span>
+            <span class="big tnum">10</span>
+            <span class="cap">等级设置<br>第壹级至第拾级</span>
+          </div>
+          <div class="sys-tags">
+            <span class="tag">钢琴</span><span class="tag">小提琴</span><span class="tag">大提琴</span><span class="tag">古筝</span><span class="tag">琵琶</span><span class="tag">声乐</span>
+          </div>
+        </article>
+        <article class="card sys-card">
+          <span class="sys-num tnum">02 / 证书体系</span>
+          <h3>教师资质认证</h3>
+          <p>面向音乐教师的执业认证：教学资历、专业背景与继续教育学时综合评定，分初级、中级、高级三档，有效期三年。</p>
+          <div class="sys-tags"><span class="tag">初级</span><span class="tag">中级</span><span class="tag">高级</span><span class="tag">三年一审</span></div>
+        </article>
+        <article class="card sys-card">
+          <span class="sys-num tnum">03 / 证书体系</span>
+          <h3>艺术实践认证</h3>
+          <p>演出、大师班、比赛经历的官方存证：为每一次登台留下可查证的职业足迹，与考级、教师档案互通。</p>
+          <div class="sys-tags"><span class="tag">演出经历</span><span class="tag">大师班</span><span class="tag">赛事记录</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 流程 -->
+  <section class="sec" id="process" data-section="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">认证流程</p>
+        <h2 class="sec-title">从申请到签发，四步完成</h2>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-step">
+          <p class="flow-num tnum">01 <small>提交申请</small></p>
+          <h3>在线提交</h3>
+          <p>填写资料并上传证明材料，全程线上完成，进度随时可查。</p>
+        </div>
+        <div class="flow-step">
+          <p class="flow-num tnum">02 <small>资质初审</small></p>
+          <h3>秘书处初审</h3>
+          <p>核验材料完整性与真实性，通常 5–7 个工作日反馈结果。</p>
+        </div>
+        <div class="flow-step">
+          <p class="flow-num tnum">03 <small>专家评审</small></p>
+          <h3>匿名评审</h3>
+          <p>由对应专业方向的评审委员会匿名评审，确保评定公正。</p>
+        </div>
+        <div class="flow-step">
+          <p class="flow-num tnum">04 <small>签发查验</small></p>
+          <h3>签发与存档</h3>
+          <p>签发证书并生成唯一编号，学员与机构可随时公开查验。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 查验演示 -->
+  <section class="sec" id="verify-demo" data-section="verify-demo" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">现场体验</p>
+        <h2 class="sec-title">输入编号，即刻查验</h2>
+        <p class="sec-lead">每份证书都有唯一编号，任何人都可以在此验证真伪。试试下面任一示例编号——</p>
+      </div>
+      <div class="verify-panel" data-verify-mount></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq" data-section="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">常见问题</p>
+        <h2 class="sec-title">关于认证，你可能想知道</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>证书如何查验真伪？</summary>
+          <p>在「证书查验」页输入证书所载编号，即可查看档案信息；可同时填入持有人姓名做二次核对。每个编号唯一且只对应一份档案，涂改或复制的编号将无法通过查验。</p>
+        </details>
+        <details>
+          <summary>认证周期需要多久？</summary>
+          <p>资质初审通常 5–7 个工作日；专家评审视专业方向与申报量约需 2–4 周。全部进度都会在「认证空间」中实时展示，无需来电询问。</p>
+        </details>
+        <details>
+          <summary>证书有有效期吗？</summary>
+          <p>教师资质认证有效期为三年，到期前需在认证空间提交继续教育学时完成续期；演奏等级认证与艺术实践认证长期有效，遗失可申请补发电子证书。</p>
+        </details>
+        <details>
+          <summary>机构如何接入音乐瞬间？</summary>
+          <p>机构提交主体资质与合作申请，通过审核后即可使用统一证书模板、批量签发通道与独立查验页面，教师与学员数据由机构自主管理。</p>
+        </details>
+        <details>
+          <summary>认证教师名录是怎么来的？</summary>
+          <p>教师资质认证通过后，经本人授权即进入名录展示；展示内容与证书档案一致，可随时查验。教师可在认证空间调整展示状态或申请暂时隐藏。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band" data-section="cta">
+    <div class="wrap cta-in">
+      <h2>把认证交给「音乐瞬间」</h2>
+      <p>为你的机构建立可信的证书体系，从一份教师认证开始。</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#/apply">申请教师认证</a>
+        <a class="btn btn-ghost" href="#/space">查看认证空间</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ==================== 视图：认证教师名录 ==================== -->
+<section class="view" data-view="teachers" id="view-teachers" aria-label="认证教师名录" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="eyebrow">VERIFIED TEACHERS</p>
+      <h1>认证教师名录</h1>
+      <p class="sec-lead">以下教师均持有有效的「音乐瞬间」教师资质认证。按专业筛选浏览，每份资质都可用证书编号当场查验。</p>
+    </div>
+    <div class="feed-bar" data-section="teachers-filter">
+      <div class="feed-chips" role="group" aria-label="按专业筛选">
+        <button class="chip" type="button" data-filter="全部" aria-pressed="true">全部</button>
+        <button class="chip" type="button" data-filter="钢琴" aria-pressed="false">钢琴</button>
+        <button class="chip" type="button" data-filter="小提琴" aria-pressed="false">小提琴</button>
+        <button class="chip" type="button" data-filter="大提琴" aria-pressed="false">大提琴</button>
+        <button class="chip" type="button" data-filter="声乐" aria-pressed="false">声乐</button>
+        <button class="chip" type="button" data-filter="古筝" aria-pressed="false">古筝</button>
+        <button class="chip" type="button" data-filter="长笛" aria-pressed="false">长笛</button>
+        <button class="chip" type="button" data-filter="打击乐" aria-pressed="false">打击乐</button>
+        <button class="chip" type="button" data-filter="音乐理论" aria-pressed="false">音乐理论</button>
+      </div>
+      <p class="feed-count tnum" id="feedCount" role="status"></p>
+    </div>
+    <div class="feed-grid" id="teacherFeed" data-section="teachers-feed"></div>
+    <div class="card state-box" id="feedEmpty" hidden>
+      <svg class="ic" style="width:28px;height:28px" aria-hidden="true"><use href="#i-search"/></svg>
+      <p>该专业暂无展示中的认证教师，可以看看其他方向。</p>
+      <button class="btn btn-ghost btn-sm" type="button" data-filter-reset>查看全部专业</button>
+    </div>
+    <p class="view-note">名录展示需教师本人授权，教师可在认证空间随时调整展示状态；本页教师与机构均为演示示例。</p>
+    <noscript><p class="view-note">名录内容需启用 JavaScript 后查看。</p></noscript>
+  </div>
+</section>
+
+<!-- ==================== 视图：证书查验 ==================== -->
+<section class="view" data-view="verify" id="view-verify" aria-label="证书查验" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="eyebrow">CERTIFICATE VERIFICATION</p>
+      <h1>证书查验</h1>
+      <p class="sec-lead">输入证书所载编号进行验证；持有人姓名用于二次核对（可选）。编号唯一，查验结果实时生成。</p>
+    </div>
+    <div class="page-body">
+      <div data-verify-mount></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 视图：教师申请 ==================== -->
+<section class="view" data-view="apply" id="view-apply" aria-label="教师认证申请" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="eyebrow">TEACHER ACCREDITATION</p>
+      <h1>教师认证申请</h1>
+      <p class="sec-lead">三步完成申请，初审通常 5–7 个工作日。带 <b aria-hidden="true" style="color:var(--gold)">*</b> 为必填项。</p>
+    </div>
+    <div class="page-body">
+      <div class="apply-panel">
+        <ol class="stepper" id="stepper" aria-label="申请步骤">
+          <li class="step-tab active" data-step-tab="1"><span class="dot tnum">1</span><span class="lbl">基本信息</span></li>
+          <li class="step-tab" data-step-tab="2"><span class="dot tnum">2</span><span class="lbl">专业资质</span></li>
+          <li class="step-tab" data-step-tab="3"><span class="dot tnum">3</span><span class="lbl">机构与提交</span></li>
+        </ol>
+
+        <form id="applyForm" novalidate>
+          <div class="form-errors" id="formErrors" tabindex="-1">
+            <h3 id="formErrorsTitle"></h3>
+            <div id="formErrorsList"></div>
+          </div>
+
+          <!-- 第 1 步 -->
+          <fieldset class="form-step" data-step="1" style="border:none">
+            <legend class="visually-hidden" style="position:absolute;left:-999px">基本信息</legend>
+            <div class="form-grid">
+              <div class="field">
+                <label for="fName">姓名 <b>*</b></label>
+                <input class="control" id="fName" name="name" autocomplete="name" required placeholder="请填写身份证件上的姓名">
+                <p class="field-msg" data-msg="name-empty">请填写姓名。</p>
+                <p class="field-msg" data-msg="name-short">姓名看起来不完整，请核对。</p>
+              </div>
+              <div class="field">
+                <label for="fPhone">手机号 <b>*</b></label>
+                <input class="control tnum" id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" required placeholder="11 位手机号" aria-describedby="hintPhone">
+                <p class="field-hint" id="hintPhone">仅用于接收初审通知，不会公开展示。</p>
+                <p class="field-msg" data-msg="phone-empty">请填写手机号。</p>
+                <p class="field-msg" data-msg="phone-format">手机号应为 1 开头的 11 位数字，请检查是否有误。</p>
+              </div>
+              <div class="field full">
+                <label for="fEmail">邮箱 <b>*</b></label>
+                <input class="control" id="fEmail" name="email" type="email" autocomplete="email" required placeholder="name@example.com">
+                <p class="field-msg" data-msg="email-empty">请填写邮箱。</p>
+                <p class="field-msg" data-msg="email-format">邮箱格式应为 name@domain.com，请检查是否有误。</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 第 2 步 -->
+          <fieldset class="form-step" data-step="2" style="border:none" hidden>
+            <legend style="position:absolute;left:-999px">专业资质</legend>
+            <div class="form-grid">
+              <div class="field">
+                <label for="fMajor">专业方向 <b>*</b></label>
+                <select class="control" id="fMajor" name="major" required>
+                  <option value="" selected>请选择专业方向</option>
+                  <option>钢琴</option><option>小提琴</option><option>大提琴</option>
+                  <option>古筝</option><option>琵琶</option><option>二胡</option>
+                  <option>声乐</option><option>长笛</option><option>打击乐</option><option>音乐理论</option>
+                </select>
+                <p class="field-msg" data-msg="major-empty">请选择专业方向。</p>
+              </div>
+              <div class="field">
+                <label for="fYears">教龄 <b>*</b></label>
+                <select class="control" id="fYears" name="years" required>
+                  <option value="" selected>请选择教龄</option>
+                  <option>3 年以内</option><option>3–5 年</option><option>6–10 年</option><option>10 年以上</option>
+                </select>
+                <p class="field-msg" data-msg="years-empty">请选择教龄。</p>
+              </div>
+              <div class="field">
+                <label for="fCert">最高专业证书</label>
+                <input class="control" id="fCert" name="cert" placeholder="如：音乐学院毕业证书、演奏等级证书">
+                <p class="field-hint">选填；将在初审环节核验。</p>
+              </div>
+              <div class="field">
+                <label for="fCertNo">证书编号</label>
+                <input class="control tnum" id="fCertNo" name="certNo" placeholder="如证书载有编号请填写">
+                <p class="field-hint">选填；填写后可加快核验。</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 第 3 步 -->
+          <fieldset class="form-step" data-step="3" style="border:none" hidden>
+            <legend style="position:absolute;left:-999px">机构与提交</legend>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="fOrg">所属机构名称 <b>*</b></label>
+                <input class="control" id="fOrg" name="org" autocomplete="organization" required placeholder="请填写任职机构全称">
+                <p class="field-msg" data-msg="org-empty">请填写所属机构名称。</p>
+              </div>
+              <div class="field full">
+                <label for="fBio">个人简介</label>
+                <textarea class="control" id="fBio" name="bio" maxlength="200" placeholder="教学经历、代表性成果等（200 字以内）"></textarea>
+                <p class="field-hint"><span id="bioCount" class="tnum">0</span> / 200 字</p>
+              </div>
+              <div class="field full" style="flex-direction:row;align-items:flex-start;gap:10px">
+                <input type="checkbox" id="fPromise" name="promise" required style="width:17px;height:17px;accent-color:var(--gold);margin-top:4px">
+                <label for="fPromise" style="font-size:13.5px;line-height:1.7">我确认所提交的资料与证明材料真实有效，并同意认证委员会在评审必要范围内使用。 <b>*</b></label>
+              </div>
+              <div class="field full">
+                <p class="field-msg" data-msg="promise-empty">需确认材料真实后才能提交。</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-nav">
+            <button class="btn btn-ghost" type="button" id="prevBtn" hidden>上一步</button>
+            <button class="btn btn-gold" type="button" id="nextBtn">下一步</button>
+          </div>
+        </form>
+
+        <!-- 成功态 -->
+        <div class="card success-panel" id="applySuccess" hidden>
+          <svg class="ic" aria-hidden="true"><use href="#i-award"/></svg>
+          <h2>申请已提交</h2>
+          <p class="success-serial tnum">申请编号 MIM-APP-2026-0427</p>
+          <p>我们已收到你的申请。初审结果将在 5–7 个工作日内通过短信与邮件通知，进度可随时在认证空间查看。</p>
+          <p class="demo-note">当前为演示环境，不会真实提交或发送信息。</p>
+          <div class="hero-cta">
+            <a class="btn btn-ghost" href="#/home">返回首页</a>
+            <a class="btn btn-gold" href="#/space">进入认证空间</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 视图：认证空间 ==================== -->
+<section class="view" data-view="space" id="view-space" aria-label="教师认证空间" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="eyebrow">ACCREDITATION SPACE</p>
+      <h1>认证空间</h1>
+      <p class="sec-lead">教师认证的统一工作台：证书档案、签发记录与待办事项，一处管理。</p>
+    </div>
+    <div class="page-body">
+      <span class="demo-ribbon"><svg class="ic" style="width:14px;height:14px" aria-hidden="true"><use href="#i-user"/></svg>演示账号 · 以下数据均为示例</span>
+
+      <div class="card panel space-hero">
+        <span class="avatar" aria-hidden="true">林</span>
+        <div>
+          <h2>林婉秋</h2>
+          <p class="meta">钢琴 · 高级演奏指导教师 · 机构「知音琴行艺术中心」</p>
+        </div>
+        <span class="badge badge-ok"><svg class="ic" style="width:13px;height:13px" aria-hidden="true"><use href="#i-check-c"/></svg>认证有效 · 至 2028-12-31</span>
+      </div>
+
+      <div class="stat-grid">
+        <div class="card stat-card"><p class="num tnum">2</p><p class="cap">有效证书</p></div>
+        <div class="card stat-card"><p class="num tnum">3</p><p class="cap">本月签发学员证书</p></div>
+        <div class="card stat-card"><p class="num tnum">1</p><p class="cap">待办事项</p></div>
+      </div>
+
+      <div class="space-grid">
+        <div style="display:grid;gap:18px">
+          <div class="card panel">
+            <div class="panel-head"><h3>我的证书</h3><a class="more" href="#/verify">前往查验</a></div>
+            <div class="cert-row">
+              <svg class="ic" aria-hidden="true"><use href="#i-award"/></svg>
+              <div class="info"><strong>演奏指导教师资质 · 高级</strong><span class="tnum">编号 MIM-2023-0061 · 2023-04-12 签发 · 有效期至 2028-12-31</span></div>
+              <span class="badge badge-ok">有效</span>
+            </div>
+            <div class="cert-row">
+              <svg class="ic" aria-hidden="true"><use href="#i-award"/></svg>
+              <div class="info"><strong>演奏等级认证 · 第捌级</strong><span class="tnum">编号 MIM-2026-0117 · 2026-06-18 签发</span></div>
+              <span class="badge badge-ok">有效</span>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-head"><h3>学员签发记录</h3><span class="more tnum">2026 年 9 月</span></div>
+            <table class="tbl">
+              <thead><tr><th scope="col">学员</th><th scope="col">证书</th><th scope="col">日期</th><th scope="col">状态</th></tr></thead>
+              <tbody>
+                <tr><td>王*涵</td><td>钢琴 · 第伍级</td><td class="tnum">2026-09-01</td><td><span class="badge badge-ok">已签发</span></td></tr>
+                <tr><td>李*然</td><td>钢琴 · 第叁级</td><td class="tnum">2026-08-24</td><td><span class="badge badge-ok">已签发</span></td></tr>
+                <tr><td>周*明</td><td>钢琴 · 第柒级</td><td class="tnum">2026-08-12</td><td><span class="badge badge-warn">制证中</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:grid;gap:18px">
+          <div class="card panel">
+            <div class="panel-head"><h3>待办事项</h3></div>
+            <div class="todo-item">
+              <svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>
+              <div class="info">
+                <strong>上传 2026 年度继续教育学时证明</strong>
+                <span class="tnum">截止 2026-09-30 · 逾期将影响认证续期</span>
+                <button class="btn btn-ghost btn-sm" type="button" data-demo-upload><svg class="ic" aria-hidden="true"><use href="#i-upload"/></svg>上传材料</button>
+              </div>
+            </div>
+          </div>
+          <div class="card panel">
+            <div class="panel-head"><h3>通知</h3><svg class="ic" style="width:17px;height:17px;color:var(--gold)" aria-hidden="true"><use href="#i-bell"/></svg></div>
+            <div class="notice-item"><time class="tnum">09-12</time><span>新版证书防伪查验码已启用，历史证书查验不受影响。</span></div>
+            <div class="notice-item"><time class="tnum">09-05</time><span>9 月评审窗口将于 09-20 开放，可在「申请」页提交本季度材料。</span></div>
+            <div class="notice-item"><time class="tnum">08-28</time><span>你签发的学员证书 周*明（第柒级）已进入制证流程。</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="space-note">当前为演示环境：人名、编号与数据均为示例，学员姓名已脱敏处理。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== 页脚 ==================== -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#/home" aria-label="音乐瞬间 首页">
+          <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
+            <circle cx="17" cy="17" r="15.7" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M14.6 22.3a2.9 2.9 0 1 0 .01 0M17 22.3V8.2c3.4.5 5.8 2 6.5 4.8.3-4.6-2.4-7.7-6.5-8.3z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+          </svg>
+          <span><span class="brand-name">音乐瞬间</span><span class="brand-sub">MOMENT IN MUSIC</span></span>
+        </a>
+        <p>为音乐教育机构提供教师认证、考级签发与真伪查验的一站式证书认证体系。</p>
+      </div>
+      <div class="foot-col">
+        <h4>导航</h4>
+        <a href="#/home">首页</a>
+        <a href="#/teachers">认证教师</a>
+        <a href="#/verify">证书查验</a>
+        <a href="#/apply">教师申请</a>
+        <a href="#/space">认证空间</a>
+      </div>
+      <div class="foot-col">
+        <h4>证书体系</h4>
+        <a href="#/home" data-scroll-to="system">演奏等级认证</a>
+        <a href="#/home" data-scroll-to="system">教师资质认证</a>
+        <a href="#/home" data-scroll-to="system">艺术实践认证</a>
+      </div>
+      <div class="foot-col">
+        <h4>联系</h4>
+        <span class="foot-txt">contact@moment.music（占位）</span>
+        <span class="foot-txt">400-000-0000（占位）</span>
+        <span class="foot-txt">周一至周五 9:30–18:30</span>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 音乐瞬间 MOMENT IN MUSIC · 京ICP备XXXXXXXX号（占位示例）</span>
+      <span>本站为设计演示原型，人名、机构、编号与数据均为示例</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 查验组件模板 -->
+<template id="tpl-verify">
+  <div class="verify-panel-body">
+    <form class="verify-form card" style="padding:clamp(20px,3vw,30px);border-radius:14px" novalidate>
+      <div class="field">
+        <label for="vCode">证书编号 <b>*</b></label>
+        <input class="control tnum" id="vCode" name="code" required placeholder="MIM-2026-0117" autocomplete="off" spellcheck="false" aria-describedby="vCodeHint">
+        <p class="field-hint" id="vCodeHint">格式：MIM-年份-序号，如 MIM-2026-0117</p>
+        <p class="field-msg" data-msg="code-empty">请输入证书编号。</p>
+        <p class="field-msg" data-msg="code-format">编号格式应为 MIM-年份-序号，例如 MIM-2026-0117。</p>
+      </div>
+      <div class="field">
+        <label for="vName">持有人姓名（可选）</label>
+        <input class="control" id="vName" name="holder" placeholder="用于二次核对" autocomplete="off">
+      </div>
+      <button class="btn btn-gold" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>查验</button>
+    </form>
+    <div class="chips">
+      <span class="chips-cap">试试示例编号：</span>
+      <button class="chip tnum" type="button" data-code="MIM-2026-0117">MIM-2026-0117</button>
+      <button class="chip tnum" type="button" data-code="MIM-2026-0242">MIM-2026-0242</button>
+      <button class="chip tnum" type="button" data-code="MIM-2023-0061">MIM-2023-0061</button>
+      <button class="chip tnum" type="button" data-code="MIM-2025-1308">MIM-2025-1308</button>
+    </div>
+    <div class="verify-result" role="status" aria-live="polite" data-verify-result></div>
+  </div>
+</template>
+<noscript><style>.view[hidden]{display:block}.mobile-nav{display:block}</style></noscript>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ========== 主题（日/夜 token） ========== */
+  var root=document.documentElement;
+  var THEME_KEY="mim-theme";
+  function applyTheme(t){
+    root.setAttribute("data-theme",t);
+    try{localStorage.setItem(THEME_KEY,t);}catch(e){}
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(THEME_KEY);}catch(e){}
+  if(saved==="night"||saved==="day"){applyTheme(saved);}
+  else{applyTheme("night"); /* 无偏好记录时默认夜间黑金 */}
+  document.getElementById("themeBtn").addEventListener("click",function(){
+    applyTheme(root.getAttribute("data-theme")==="night"?"day":"night");
+  });
+
+  /* ========== 路由 ========== */
+  var ROUTES=["home","teachers","verify","apply","space"];
+  var TITLES={home:"音乐瞬间 · 证书认证官网",teachers:"认证教师名录 · 音乐瞬间",verify:"证书查验 · 音乐瞬间",apply:"教师认证申请 · 音乐瞬间",space:"认证空间 · 音乐瞬间"};
+  var homeEntranceDone=false;
+  function currentRoute(){
+    var h=(location.hash||"").replace(/^#\/?/,"");
+    return ROUTES.indexOf(h)>-1?h:"home";
+  }
+  function showView(name){
+    document.querySelectorAll(".view").forEach(function(v){
+      var on=v.getAttribute("data-view")===name;
+      if(on){v.removeAttribute("hidden");}
+      else{v.setAttribute("hidden","");}
+    });
+    document.querySelectorAll("[data-route]").forEach(function(a){
+      if(a.getAttribute("data-route")===name){a.setAttribute("aria-current","page");}
+      else{a.removeAttribute("aria-current");}
+    });
+    document.title=TITLES[name]||TITLES.home;
+    mobileNav.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded","false");
+    menuBtn.querySelector("use").setAttribute("href","#i-menu");
+    if(name!=="home"){homeEntranceDone=true;}
+    window.scrollTo({top:0,behavior:"auto"});
+  }
+  window.addEventListener("hashchange",function(){showView(currentRoute());});
+
+  /* 导航直切：点击即切换，不依赖 hash 事件（任何预览环境都可用） */
+  document.querySelectorAll('a[href^="#/"]').forEach(function(a){
+    a.addEventListener("click",function(ev){
+      var route=(a.getAttribute("href")||"").replace(/^#\//,"");
+      if(ROUTES.indexOf(route)<0){return;}
+      ev.preventDefault();
+      showView(route);
+      try{history.replaceState(null,"","#/"+route);}catch(e){}
+    });
+  });
+
+  /* ========== 顶栏 ========== */
+  var head=document.getElementById("siteHead");
+  var menuBtn=document.getElementById("menuBtn");
+  var mobileNav=document.getElementById("mobileNav");
+  window.addEventListener("scroll",function(){
+    head.classList.toggle("scrolled",window.scrollY>8);
+  },{passive:true});
+  menuBtn.addEventListener("click",function(){
+    var open=mobileNav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded",open?"true":"false");
+    menuBtn.querySelector("use").setAttribute("href",open?"#i-x":"#i-menu");
+  });
+
+  /* 首页入场动效只跑一次：路由初始化后给首页元素加 rise 类 */
+  var initial=currentRoute();
+  showView(initial);
+  if(initial==="home"){
+    document.querySelectorAll(".rise").forEach(function(el){el.style.opacity="";});
+    homeEntranceDone=true;
+  }else{
+    document.querySelectorAll(".rise").forEach(function(el){el.classList.remove("rise");el.style.opacity="1";});
+  }
+
+  /* ========== 查验组件（演示数据） ========== */
+  var CERTS={
+    "MIM-2026-0117":{holder:"林婉秋",type:"演奏等级认证",major:"钢琴",level:"第捌级",issued:"2026-06-18",status:"ok",statusText:"档案一致 · 有效"},
+    "MIM-2026-0242":{holder:"陈其锋",type:"教师资质认证",major:"小提琴",level:"中级教师",issued:"2026-08-02",status:"ok",statusText:"档案一致 · 有效"},
+    "MIM-2025-1308":{holder:"苏合",type:"艺术实践认证",major:"声乐",level:"大师班结业",issued:"2025-11-30",status:"ok",statusText:"档案一致 · 有效"}
+  };
+  var tpl=document.getElementById("tpl-verify");
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+  function renderFound(mount,c,code){
+    var now=new Date();
+    var at=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+    mount.innerHTML=
+      '<article class="card result-card">'+
+        '<div class="result-main">'+
+          '<p class="result-name">'+esc(c.holder)+
+            '<span class="badge badge-ok"><svg class="ic" style="width:13px;height:13px" aria-hidden="true"><use href="#i-check-c"/></svg>'+esc(c.statusText)+'</span>'+
+          '</p>'+
+          '<dl>'+
+            '<dt>证书类型</dt><dd>'+esc(c.type)+'</dd>'+
+            '<dt>专业方向</dt><dd>'+esc(c.major)+'</dd>'+
+            '<dt>级别 / 名称</dt><dd>'+esc(c.level)+'</dd>'+
+            '<dt>证书编号</dt><dd class="tnum">'+esc(code)+'</dd>'+
+            '<dt>签发日期</dt><dd class="tnum">'+esc(c.issued)+'</dd>'+
+          '</dl>'+
+        '</div>'+
+        '<div class="result-side">'+
+          '<div class="qr-box">二维码<br>占位</div>'+
+          '<p class="verify-at tnum">查验于 '+at+'</p>'+
+        '</div>'+
+      '</article>'+
+      '<p class="result-note">查验结果实时生成，仅反映签发档案当前状态。当前为演示数据。</p>';
+  }
+  function renderMismatch(mount,c,code,name){
+    mount.innerHTML=
+      '<article class="card result-card" style="border-color:color-mix(in srgb,var(--danger) 40%,transparent)">'+
+        '<div class="result-main">'+
+          '<p class="result-name">'+esc(name)+
+            '<span class="badge badge-danger"><svg class="ic" style="width:13px;height:13px" aria-hidden="true"><use href="#i-alert"/></svg>记录不一致</span>'+
+          '</p>'+
+          '<dl>'+
+            '<dt>证书编号</dt><dd class="tnum">'+esc(code)+'</dd>'+
+            '<dt>档案持有人</dt><dd>'+esc(c.holder)+'</dd>'+
+            '<dt>证书类型</dt><dd>'+esc(c.type)+'</dd>'+
+            '<dt>状态</dt><dd>编号存在，但姓名与档案不一致，请核对证书信息或联系签发机构。</dd>'+
+          '</dl>'+
+        '</div>'+
+        '<div class="result-side"><div class="qr-box">二维码<br>占位</div></div>'+
+      '</article>'+
+      '<p class="result-note">如你确信持有该证书，请核对编号拼写，或联系签发机构核实。</p>';
+  }
+  function renderLoading(mount){
+    mount.innerHTML='<div class="card state-box"><div class="spin" aria-hidden="true"></div><p>正在查询档案…</p></div>';
+  }
+  function renderNotFound(mount,code){
+    mount.innerHTML=
+      '<div class="card state-box">'+
+        '<svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>'+
+        '<h3>未查询到该编号</h3>'+
+        '<p>编号 <span class="tnum">'+esc(code)+'</span> 在档案库中不存在。请核对拼写与格式（MIM-年份-序号），或向签发机构确认证书真伪。</p>'+
+      '</div>';
+  }
+  function setFieldError(form,key,which){
+    form.querySelectorAll(".field").forEach(function(f){
+      var relevant=f.querySelector('[data-msg^="'+key+'"]');
+      if(!relevant){return;}
+      var msgs=f.querySelectorAll(".field-msg");
+      var hit=false;
+      msgs.forEach(function(m){
+        var on=m.getAttribute("data-msg")===key+"-"+which;
+        m.style.display=on?"block":"none";
+        if(on){hit=true;}
+      });
+      f.classList.toggle("invalid",hit);
+    });
+  }
+  function clearErrors(form){
+    form.querySelectorAll(".field-msg").forEach(function(m){m.style.display="none";});
+    form.querySelectorAll(".field").forEach(function(f){f.classList.remove("invalid");});
+  }
+
+  function mountVerify(container){
+    var node=tpl.content.cloneNode(true);
+    container.appendChild(node);
+    var form=container.querySelector("form");
+    var codeInput=container.querySelector("#vCode");
+    var nameInput=container.querySelector("#vName");
+    var result=container.querySelector("[data-verify-result]");
+    /* 双实例挂载：重写 id 避免重复 */
+    var uid="vCode-"+Math.random().toString(36).slice(2,7);
+    var uid2="vName-"+Math.random().toString(36).slice(2,7);
+    codeInput.id=uid;
+    nameInput.id=uid2;
+    form.querySelector('label[for="vCode"]').setAttribute("for",uid);
+    form.querySelector('label[for="vName"]').setAttribute("for",uid2);
+
+    container.querySelectorAll(".chip").forEach(function(chip){
+      chip.addEventListener("click",function(){
+        codeInput.value=chip.getAttribute("data-code");
+        clearErrors(form);
+        form.requestSubmit();
+      });
+    });
+    codeInput.addEventListener("input",function(){clearErrors(form);});
+
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      clearErrors(form);
+      var code=codeInput.value.trim().toUpperCase();
+      var name=nameInput.value.trim();
+      if(!code){setFieldError(form,"code","empty");codeInput.focus();return;}
+      if(!/^MIM-\d{4}-\d{3,6}$/.test(code)){setFieldError(form,"code","format");codeInput.focus();return;}
+      renderLoading(result);
+      setTimeout(function(){
+        var c=CERTS[code];
+        if(!c){renderNotFound(result,code);return;}
+        if(name&&name!==c.holder){renderMismatch(result,c,code,name);return;}
+        renderFound(result,c,code);
+      },550);
+    });
+  }
+  document.querySelectorAll("[data-verify-mount]").forEach(mountVerify);
+
+  /* ========== 认证教师名录（演示数据，与查验库同源） ========== */
+  var TEACHERS=[
+    {name:"林婉秋",major:"钢琴",level:"高级教师",org:"清弦音乐工作室",bio:"钢琴演奏指导，深耕考级教学与舞台实践，注重读谱习惯与听觉训练。",cert:"MIM-2023-0061",issued:"2023-04-12"},
+    {name:"池雨眠",major:"钢琴",level:"中级教师",org:"沁音琴行",bio:"主攻启蒙与中级阶段，擅长把乐理揉进曲目里讲，课堂节奏轻快。",cert:"MIM-2024-0940",issued:"2024-09-03"},
+    {name:"陈其锋",major:"小提琴",level:"中级教师",org:"市少年宫弦乐教研组",bio:"弦乐基础教学，关注持弓放松与音准体系的整体建立。",cert:"MIM-2026-0242",issued:"2026-08-02"},
+    {name:"陆则鸣",major:"大提琴",level:"高级教师",org:"雅乐艺术中心",bio:"二十年乐团与教学经验，考前冲刺与大型曲目打磨。",cert:"MIM-2022-1156",issued:"2022-11-20"},
+    {name:"苏合",major:"声乐",level:"初级教师",org:"云杉合唱团",bio:"合唱团出身，童声与青少年变声期训练尤为细致。",cert:"MIM-2025-0892",issued:"2025-12-08"},
+    {name:"顾湘岚",major:"古筝",level:"中级教师",org:"谷雨民乐社",bio:"传统曲目与现代作品并重，考级与展演双线辅导。",cert:"MIM-2024-0388",issued:"2024-05-16"},
+    {name:"岑蔚然",major:"长笛",level:"中级教师",org:"蓝橡管乐教室",bio:"呼吸与运舌的系统训练，考级曲目逐课精修。",cert:"MIM-2025-0517",issued:"2025-07-22"},
+    {name:"白澍",major:"打击乐",level:"初级教师",org:"节奏盒子现代音乐中心",bio:"从小军鼓入门到架子鼓编配，先把节奏感立起来。",cert:"MIM-2026-0301",issued:"2026-03-19"},
+    {name:"秦语迟",major:"音乐理论",level:"高级教师",org:"乐理与视唱练耳教研室",bio:"乐理、视唱练耳与和声写作，理论考级一体化辅导。",cert:"MIM-2021-0044",issued:"2021-06-30"}
+  ];
+  /* 教师资质并入查验档案库：名录与查验共用同一数据源 */
+  TEACHERS.forEach(function(t){
+    CERTS[t.cert]={holder:t.name,type:"教师资质认证",major:t.major,level:t.level,issued:t.issued,status:"ok",statusText:"档案一致 · 有效"};
+  });
+  var TIER_CLS={"高级教师":"tier-gold","中级教师":"tier-mid","初级教师":"tier-junior"};
+  var feedGrid=document.getElementById("teacherFeed");
+  var feedCount=document.getElementById("feedCount");
+  var feedEmpty=document.getElementById("feedEmpty");
+  function renderFeed(filter){
+    var list=TEACHERS.filter(function(t){return filter==="全部"||t.major===filter;});
+    feedGrid.innerHTML=list.map(function(t){
+      return '<article class="t-card" data-major="'+esc(t.major)+'">'
+        +'<div class="t-head">'
+        +'<span class="t-avatar" aria-hidden="true">'+esc(t.name.charAt(0))+'</span>'
+        +'<div class="t-id"><div class="t-name-row"><span class="t-name">'+esc(t.name)+'</span>'
+        +'<span class="tier '+TIER_CLS[t.level]+'">'+esc(t.level)+'</span></div>'
+        +'<p class="t-org">'+esc(t.major)+' · '+esc(t.org)+'</p></div></div>'
+        +'<p class="t-bio">'+esc(t.bio)+'</p>'
+        +'<div class="t-foot"><span class="t-cert tnum">'+esc(t.cert)+'</span>'
+        +'<button class="t-verify" type="button" data-cert="'+esc(t.cert)+'" aria-label="查验 '+esc(t.name)+' 的认证证书"><svg class="ic" style="width:13px;height:13px" aria-hidden="true"><use href="#i-search"/></svg>查验</button></div>'
+        +'</article>';
+    }).join("");
+    feedCount.textContent="共 "+list.length+" 位认证教师（示例）";
+    feedGrid.hidden=list.length===0;
+    feedEmpty.hidden=list.length!==0;
+  }
+  renderFeed("全部");
+  document.querySelector("#view-teachers .feed-chips").addEventListener("click",function(ev){
+    var btn=ev.target.closest("[data-filter]");
+    if(!btn){return;}
+    document.querySelectorAll("#view-teachers .feed-chips .chip").forEach(function(c){
+      c.setAttribute("aria-pressed",c===btn?"true":"false");
+    });
+    renderFeed(btn.getAttribute("data-filter"));
+  });
+  document.querySelector("[data-filter-reset]").addEventListener("click",function(){
+    var all=document.querySelector('#view-teachers .chip[data-filter="全部"]');
+    if(all){all.click();}
+  });
+  /* 名录 → 查验：一键预填编号并自动查询 */
+  feedGrid.addEventListener("click",function(ev){
+    var btn=ev.target.closest("[data-cert]");
+    if(!btn){return;}
+    var code=btn.getAttribute("data-cert");
+    showView("verify");
+    var mount=document.querySelector("#view-verify [data-verify-mount]");
+    var input=mount.querySelector('input[name="code"]');
+    input.value=code;
+    mount.querySelector("form").requestSubmit();
+  });
+
+  /* ========== 申请表单（三步 + 校验状态机） ========== */
+  var form=document.getElementById("applyForm");
+  var steps=[].slice.call(document.querySelectorAll(".form-step"));
+  var tabs=[].slice.call(document.querySelectorAll(".step-tab"));
+  var prevBtn=document.getElementById("prevBtn");
+  var nextBtn=document.getElementById("nextBtn");
+  var errBox=document.getElementById("formErrors");
+  var errTitle=document.getElementById("formErrorsTitle");
+  var errList=document.getElementById("formErrorsList");
+  var cur=1;
+  var TOTAL=3;
+
+  function fieldOf(name){return form.querySelector('[name="'+name+'"]');}
+  function msgEl(key){return form.querySelector('[data-msg="'+key+'"]');}
+  function showMsg(key){
+    var el=msgEl(key);
+    if(el){
+      var f=el.closest(".field");
+      f.querySelectorAll(".field-msg").forEach(function(m){m.style.display="none";});
+      el.style.display="block";
+      f.classList.add("invalid");
+    }
+  }
+  function clearFieldError(name){
+    var el=form.querySelector('[name="'+name+'"]');
+    if(!el){return;}
+    var f=el.closest(".field");
+    if(f){f.classList.remove("invalid");f.querySelectorAll(".field-msg").forEach(function(m){m.style.display="none";});}
+  }
+
+  /* 每个字段的校验：返回 null（通过）或 message key */
+  var VALIDATORS={
+    name:function(v){return v.trim()?(v.trim().length<2?"name-short":null):"name-empty";},
+    phone:function(v){
+      var s=v.trim();
+      if(!s){return "phone-empty";}
+      return /^1\d{10}$/.test(s)?null:"phone-format";
+    },
+    email:function(v){
+      var s=v.trim();
+      if(!s){return "email-empty";}
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s)?null:"email-format";
+    },
+    major:function(v){return v?null:"major-empty";},
+    years:function(v){return v?null:"years-empty";},
+    org:function(v){return v.trim()?null:"org-empty";},
+    promise:function(v,el){return el.checked?null:"promise-empty";}
+  };
+  var MSG_KEYS={
+    "name-empty":"请填写姓名。","name-short":"姓名看起来不完整，请核对。",
+    "phone-empty":"请填写手机号。","phone-format":"手机号应为 1 开头的 11 位数字，请检查是否有误。",
+    "email-empty":"请填写邮箱。","email-format":"邮箱格式应为 name@domain.com，请检查是否有误。",
+    "major-empty":"请选择专业方向。","years-empty":"请选择教龄。",
+    "org-empty":"请填写所属机构名称。","promise-empty":"需确认材料真实后才能提交。"
+  };
+
+  function validateField(el){
+    var validator=VALIDATORS[el.name];
+    if(!validator){return null;}
+    var key=validator(el.value,el);
+    clearFieldError(el.name);
+    if(key){showMsg(key);}
+    return key;
+  }
+
+  /* 只在 blur 后进入校验；一旦 invalid，转为 input 即时复检 */
+  Object.keys(VALIDATORS).forEach(function(name){
+    var el=fieldOf(name);
+    if(!el){return;}
+    var touched=false;
+    var evt=el.type==="checkbox"?"change":"blur";
+    el.addEventListener(evt,function(){
+      touched=true;
+      validateField(el);
+    });
+    el.addEventListener("input",function(){
+      if(el.closest(".field").classList.contains("invalid")){validateField(el);}
+    });
+    el.addEventListener("change",function(){
+      /* 复选框 / 下拉的纠错即时复检 */
+      if(touched){validateField(el);}
+    });
+  });
+
+  /* 字数统计 */
+  var bio=document.getElementById("fBio");
+  if(bio){bio.addEventListener("input",function(){document.getElementById("bioCount").textContent=bio.value.length;});}
+
+  function stepFields(n){
+    var step=steps[n-1];
+    return [].slice.call(step.querySelectorAll("[name]")).filter(function(el){return VALIDATORS[el.name];});
+  }
+  function validateStep(n){
+    var bad=[];
+    stepFields(n).forEach(function(el){
+      var key=validateField(el);
+      if(key){bad.push({name:el.name,key:key,label:el.closest(".field").querySelector("label").textContent.replace("*","").trim()});}
+    });
+    return bad;
+  }
+  function renderStep(){
+    steps.forEach(function(s,i){s.hidden=(i+1)!==cur;});
+    tabs.forEach(function(t,i){
+      t.classList.toggle("active",i+1===cur);
+      t.classList.toggle("done",i+1<cur);
+      var dot=t.querySelector(".dot");
+      dot.innerHTML=(i+1<cur)?"✓":String(i+1);
+      if(i+1===cur){t.setAttribute("aria-current","step");}else{t.removeAttribute("aria-current");}
+    });
+    prevBtn.hidden=cur===1;
+    nextBtn.textContent=cur===TOTAL?"提交申请":"下一步";
+    errBox.classList.remove("show");
+  }
+  function focusFirstInvalid(bad){
+    var el=fieldOf(bad[0].name);
+    if(el){el.focus();}
+  }
+  prevBtn.addEventListener("click",function(){if(cur>1){cur--;renderStep();}});
+  nextBtn.addEventListener("click",function(){
+    var bad=validateStep(cur);
+    if(bad.length){
+      errTitle.textContent="还有 "+bad.length+" 项需要修改：";
+      errList.innerHTML=bad.map(function(b){return '<a href="#f'+b.name+'" data-goto="'+b.name+'">'+MSG_KEYS[b.key]+"</a>";}).join("");
+      errBox.classList.add("show");
+      errBox.focus();
+      errList.querySelectorAll("a").forEach(function(a){
+        a.addEventListener("click",function(e){
+          e.preventDefault();
+          var el=fieldOf(a.getAttribute("data-goto"));
+          if(el){el.focus();}
+        });
+      });
+      focusFirstInvalid(bad);
+      return;
+    }
+    if(cur<TOTAL){cur++;renderStep();window.scrollTo({top:0,behavior:"smooth"});return;}
+    /* 提交（演示） */
+    form.hidden=true;
+    document.getElementById("stepper").hidden=true;
+    document.getElementById("applySuccess").hidden=false;
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+  renderStep();
+
+  /* ========== 演示反馈：上传材料 ========== */
+  document.querySelectorAll("[data-demo-upload]").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var span=document.createElement("span");
+      span.className="badge badge-ok";
+      span.innerHTML='<svg class="ic" style="width:13px;height:13px" aria-hidden="true"><use href="#i-check-c"/></svg>已收到材料（演示，不会真实上传）';
+      btn.replaceWith(span);
+    });
+  });
+
+  /* ========== 页脚定位到首页区块 ========== */
+  document.querySelectorAll("[data-scroll-to]").forEach(function(a){
+    a.addEventListener("click",function(){
+      var target=a.getAttribute("data-scroll-to");
+      if(currentRoute()!=="home"){
+        location.hash="#/home";
+        setTimeout(function(){
+          var el=document.getElementById(target);
+          if(el){el.scrollIntoView({behavior:"smooth"});}
+        },80);
+      }else{
+        var el=document.getElementById(target);
+        if(el){el.scrollIntoView({behavior:"smooth"});}
+      }
+    });
+  });
+
+  /* ========== 年份 ========== */
+})();
+</script>
+</body>
+</html>
