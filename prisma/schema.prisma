@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model TeacherApplication {
+  id          String    @id @default(cuid())
+  applyNo     String    @unique
+  name        String
+  gender      String    @default("女")
+  phone       String
+  email       String?
+  city        String
+  instrument  String
+  education   String
+  school      String
+  years       Int
+  title       String?
+  bio         String
+  achievement String?
+  status      String    @default("PENDING")
+  reviewNote  String?
+  reviewedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([phone])
+  @@index([status])
+}

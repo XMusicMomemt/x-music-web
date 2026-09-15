@@ -1,0 +1,10 @@
+node_modules
+.next
+.next-prod
+db
+*.log
+.git
+.env
+
+
+!.env.example
